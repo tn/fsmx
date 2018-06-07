@@ -1,4 +1,4 @@
-# FSMX
+# FSMX [![Build Status](https://travis-ci.org/tn/fsmx.svg?branch=master)](https://travis-ci.org/tn/fsmx)
 Simple Finite State Machine based on async/await events and actions
 
 ## Documentation
@@ -40,7 +40,9 @@ const fsm = fsmx({
 
 ### Methods
 `fsm.is('initial')` - check the current state
+
 `fsm.can('wait')` - check possibility to transition to some state from the current state
+
 `fsm.reset()` - reset the current state to initial
 ```
 // Calling actions to transition between states
@@ -53,6 +55,9 @@ const fsm = fsmx({
 
 ## Scripts
 `npm start` - development
+
 `npm test` - tests
+
 `npm run test:watch` - tests with watch flag
+
 `npm run build` - build
