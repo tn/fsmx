@@ -1,10 +1,10 @@
 import Log from './log'
 
 /**
- * @param {String} initial
- * @param {Object} actions
- * @param {Object} events
- * @param {Boolean} log
+ * @param {string} initial
+ * @param {object} actions
+ * @param {object} events
+ * @param {boolean} log
  */
 export default ({
   initial,

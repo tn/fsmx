@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export default function log(name, isEnable = false) {
   return function decorator(t, n, descriptor) {
     const original = descriptor.value
