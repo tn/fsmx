@@ -3,7 +3,7 @@ const config = {
     library: 'fsmx',
     libraryTarget: 'umd'
   },
-  target: 'node',
+  target: 'web',
   module: {
     rules: [
       {
