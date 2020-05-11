@@ -1,2 +1,9 @@
 src
 tsconfig.json
+coverage
+.nyc_output
+.eslintignore
+.eslintrc.json
+.gitignore
+.travis.yml
+wepback.config.js
