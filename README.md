@@ -6,7 +6,7 @@ Simple Finite State Machine based on async/await events and actions
 ```
 import fsmx from 'fsmx'
 
-const fsm = fsmx({
+const fsm = new fsmx({
     initial: 'initial',
     actions: {
         waitForCmd: {from: ['initial', 'end', 'error'], to: 'wait'},
@@ -23,8 +23,7 @@ const fsm = fsmx({
         async onEnterState (from, to) {
             // do something asynchronous
         }
-    },
-    log: true
+    }
 })
 ```
 
@@ -36,7 +35,6 @@ const fsm = fsmx({
 | actions[].from | Array, String | -         | yes      |
 | actions[].to   | String        | -         | yes      |
 | events         | Object        | {}        | no       |
-| log            | Boolean       | false     | no       |
 
 ### Methods
 `fsm.is('initial')` - check the current state
@@ -45,7 +43,7 @@ const fsm = fsmx({
 
 `fsm.reset()` - reset the current state to initial
 ```
-// Calling actions to transition between states
+// Call actions to transition between states
 (async () => {
     await fsm.waitForCmd()
     await fsm.listenForCmd()
@@ -54,10 +52,12 @@ const fsm = fsmx({
 ```
 
 ## Scripts
-`npm start` - development
+`yarn start` - development
 
-`npm test` - tests
+`yarn test` - tests
 
-`npm run test:watch` - tests with watch flag
+`yarn test:watch` - tests with watch flag
 
-`npm run build` - build
+`yarn build` - build
+
+`yarn coverage` - get coverage report
