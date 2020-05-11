@@ -1,16 +1,16 @@
-import test from 'ava'
-import fsm from '../src/index'
+const test = require('ava')
+const fsm = require('../src/index').default
 
 test('Check initial params', t => {
   try {
-    fsm({})
+    const instance = new fsm({})
   } catch (e) {
     t.true(e instanceof Error)
     t.regex(e.message, /No initial state defined/)
   }
 
   try {
-    fsm({
+    const instance = new fsm({
       initial: 123
     })
   } catch (e) {
@@ -19,7 +19,7 @@ test('Check initial params', t => {
   }
 
   try {
-    fsm({
+    const instance = new fsm({
       initial: 'foo',
     })
   } catch (e) {
@@ -29,7 +29,7 @@ test('Check initial params', t => {
 })
 
 test.beforeEach(async (t) => {
-  t.context.data = fsm({
+  t.context.data = new fsm({
     initial: 'initial',
     actions: {
       waitForCmd: {from: ['initial', 'end', 'error'], to: 'wait'},
@@ -55,8 +55,8 @@ test('Methods should be available', t => {
   t.true(typeof t.context.data.can === 'function')
   t.true(typeof t.context.data.is === 'function')
   t.true(typeof t.context.data.reset === 'function')
-  t.true(typeof t.context.data._transit === 'function')
-  t.true(typeof t.context.data._emit === 'function')
+  t.true(typeof t.context.data.transit === 'function')
+  t.true(typeof t.context.data.emit === 'function')
 })
 
 test('should create states schema', t => {
@@ -125,7 +125,7 @@ test('should reset fsm', async t => {
 
 test('should return error if transit can\'t possible', async t => {
   try {
-    await t.context.data._transit('kek', 'pek')
+    await t.context.data.transit('kek', 'pek')
   } catch (e) {
     t.true(e instanceof Error)
     t.regex(e.message, /Can't transit to target/)
@@ -133,7 +133,7 @@ test('should return error if transit can\'t possible', async t => {
 })
 
 test('should trigger event on state leave', async t => {
-  let f1 = fsm({
+  let f1 = new fsm({
     initial: 'initial',
     actions: {
       start: {from: 'initial', to: 'start'},
@@ -152,7 +152,7 @@ test('should trigger event on state leave', async t => {
 })
 
 test('should trigger event on state enter', async t => {
-  let f2= fsm({
+  let f2 = new fsm({
     initial: 'initial',
     actions: {
       start: {from: 'initial', to: 'start'},
